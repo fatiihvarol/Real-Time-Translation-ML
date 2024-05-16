@@ -3,15 +3,77 @@
   <head>
     <meta charset="UTF-8" />
     <title>Real-Time Translation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 900px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 100%;
+        box-sizing: border-box;
+        resize: vertical;
+        min-height: 100px;
+      }
+      button {
+        background-color: #4285f4;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #357ae8;
+      }
+      #translated_text {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #f9f9f9;
+        min-height: 100px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Real-Time Translation</h1>
-    <form action="/translate" method="post">
-      <label for="input_text">Input Text:</label>
-      <input type="text" id="input_text" name="input_text" />
-      <button type="submit">Translate</button>
-    </form>
-    <div id="translated_text"></div>
+    <div class="container">
+      <h1>Real-Time Translation</h1>
+      <form action="/translate" method="post">
+        <label for="input_text">Input Text:</label>
+        <textarea id="input_text" name="input_text"></textarea>
+        <button type="submit">Translate</button>
+      </form>
+      <div id="translated_text"></div>
+    </div>
     <script>
       const form = document.querySelector("form");
       form.addEventListener("submit", async (event) => {
