@@ -4,12 +4,15 @@
     <meta charset="UTF-8" />
     <title>Real-Time Translation</title>
     <style>
+            body {
+       /* Genel stiller */
       body {
         font-family: Arial, sans-serif;
         background-color: #f5f5f5;
         margin: 0;
         padding: 0;
       }
+
       .container {
         max-width: 900px;
         margin: 50px auto;
@@ -17,20 +20,19 @@
         padding: 20px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
+
       h1 {
         text-align: center;
         color: #333;
         margin-bottom: 20px;
       }
-      form {
+
+      /* Çeviri formu stilleri */
+      .translation-container {
         display: flex;
-        flex-direction: column;
         gap: 10px;
       }
-      label {
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
+
       textarea {
         padding: 10px;
         border: 1px solid #ccc;
@@ -39,8 +41,9 @@
         width: 100%;
         box-sizing: border-box;
         resize: vertical;
-        min-height: 100px;
+        min-height: 200px;
       }
+
       button {
         background-color: #4285f4;
         color: white;
@@ -50,32 +53,46 @@
         font-size: 16px;
         cursor: pointer;
         transition: background-color 0.3s;
+        align-self: center;
+        margin-top: 20px;
       }
+
       button:hover {
         background-color: #357ae8;
       }
+
       #translated_text {
-        margin-top: 20px;
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 4px;
         background-color: #f9f9f9;
-        min-height: 100px;
+        min-height: 200px;
+        width: 100%;
       }
     </style>
   </head>
   <body>
     <div class="container">
       <h1>Real-Time Translation</h1>
-      <form action="/translate" method="post">
-        <label for="input_text">Input Text:</label>
-        <textarea id="input_text" name="input_text"></textarea>
-        <button type="submit">Translate</button>
+      <form
+        id="translation-form"
+        action="/translate"
+        method="post"
+        class="translation-container"
+      >
+        <div>
+          <label for="input_text">Input Text:</label>
+          <textarea id="input_text" name="input_text"></textarea>
+        </div>
+        <div>
+          <label for="translated_text">Translated Text:</label>
+          <div id="translated_text"></div>
+        </div>
       </form>
-      <div id="translated_text"></div>
+      <button type="submit" form="translation-form">Translate</button>
     </div>
     <script>
-      const form = document.querySelector("form");
+      const form = document.getElementById("translation-form");
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
         const formData = new FormData(form);
